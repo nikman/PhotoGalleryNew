@@ -99,7 +99,7 @@ public class FlickrFetch {
 
     }
 
-    private void parseItems_v1(List<GalleryItem> items, JSONObject jsonBody)
+    private void parseItems(List<GalleryItem> items, JSONObject jsonBody)
                 throws IOException, JSONException {
 
         JSONObject photosJsonObject = jsonBody.getJSONObject("photos");
@@ -125,7 +125,7 @@ public class FlickrFetch {
 
     }
 
-    private void parseItems(List<GalleryItem> items, JSONObject jsonBody)
+    private void parseItems_v2(List<GalleryItem> items, JSONObject jsonBody)
             throws IOException, JSONException {
 
         Gson gson = new Gson();
@@ -139,7 +139,8 @@ public class FlickrFetch {
 
             /*JSONObject photoJsonObject = photoJsonArray.getJSONObject(i);*/
 
-            GalleryItem item = gson.fromJson(photoJsonArray.getJSONObject(i).toString(), GalleryItem.class); // new GalleryItem();
+            GalleryItem item = gson.fromJson(photoJsonArray.getJSONObject(i).toString(),
+                    GalleryItem.class); // new GalleryItem();
              /*item.setId(photoJsonObject.getString("id"));
             item.setCaption(photoJsonObject.getString("title"));
 
