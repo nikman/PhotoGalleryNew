@@ -7,7 +7,6 @@ import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
-import android.os.Looper;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
@@ -17,11 +16,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -140,9 +137,6 @@ public class PhotoGalleryFragment extends Fragment {
             mItemImageView = itemView.findViewById(R.id.fragment_photo_gallery_image_view);
         }
 
-        /*public void bindGalleryItem(GalleryItem galleryItem) {
-            mTitleTextView.setText(galleryItem.toString());
-        }*/
 
         public void bindDrawable(Drawable drawable) {
             mItemImageView.setImageDrawable(drawable);
@@ -168,11 +162,11 @@ public class PhotoGalleryFragment extends Fragment {
         // Создаёт новые вьюхи. Вызывается из LayoutManager'a
         @Override
         public PhotoHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-            /*TextView textView = new TextView(getActivity());
-            return new PhotoHolder(textView);*/
+
             LayoutInflater inflater = LayoutInflater.from(getActivity());
             View view = inflater.inflate(R.layout.gallery_item, parent, false);
             return new PhotoHolder(view);
+
         }
 
         // Заменяет содержимое вьюхи (invoked by the layout manager)
@@ -180,19 +174,6 @@ public class PhotoGalleryFragment extends Fragment {
         public void onBindViewHolder(PhotoHolder holder, int position) {
 
             GalleryItem galleryItem = mGalleryItems.get(position);
-            //holder.bindGalleryItem(galleryItem);
-            //holder.bindDrawable(galleryItem);
-            /*Drawable placeholder;
-            if (position % 2 == 0)
-            {
-                placeholder = getResources().getDrawable(R.drawable.empty_image_snowman);
-            }
-            else
-            {
-                placeholder = getResources().getDrawable(R.drawable.empty_image_bell);
-            }
-            holder.bindDrawable(placeholder);
-            mThumbnailDownloader.queueThumbnail(holder, galleryItem.getUrl());*/
 
             holder.bindGalleryItem(galleryItem);
 
